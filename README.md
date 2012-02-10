@@ -1,21 +1,25 @@
 SpreeInvoiceGenerator
 =====================
 
-Introduction goes here.
-
+This gem provides model responsible for generating pdf from html file.
 
 Example
 =======
 
-Example goes here.
+Add to Gemfile:
+gem 'spree_invoice_generator'
 
-Testing
--------
+Execute: 
+bundle exec spree_invoice_generator:install:migrations  # copy migrations from gem
+bundle exec rake db:migrate                             # execute migrations
+bundle exec spree_invoice_prints:generate               # generate missing records
 
-Be sure to bundle your dependencies and then create a dummy test app for the specs to run against.
+In any model you can generate pdf string:
+Spree::InvoicePrint.find_by_order_id('some id').try(:generate_pdf)
+or:
+Order.last.invoice_print.generate_pdf
+or: 
+pdfs = []
+User.last.invoice_prints.each { |e| pdfs << e.generate_pdf }
 
-    $ bundle
-    $ bundle exec rake test app
-    $ bundle exec rspec spec
-
-Copyright (c) 2012 [name of extension creator], released under the New BSD License
+You can also check how many times invoice was generated - column: counter
