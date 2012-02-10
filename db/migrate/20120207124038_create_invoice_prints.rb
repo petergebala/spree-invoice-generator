@@ -1,6 +1,6 @@
 class CreateInvoicePrints < ActiveRecord::Migration
   def change
-    create_table :invoice_prints do |t|
+    create_table :spree_invoice_prints do |t|
       t.integer :order_id
       t.integer :user_id
       t.integer :counter

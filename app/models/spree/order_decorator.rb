@@ -4,6 +4,6 @@ Spree::Order.class_eval do
 
   private
   def add_invoice_print
-    InvoicePrint.create(:order => self, :user => self.user)
+    self.create_invoice_print(:user => self.user)
   end
 end
