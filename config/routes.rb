@@ -1,3 +1,3 @@
 Spree::Core::Engine.routes.draw do
-  # Add your extension routes here
+  match '/invoice_prints/get_pdf' => 'invoice_prints#get_pdf', :as => :pdf_invoice_prints
 end
