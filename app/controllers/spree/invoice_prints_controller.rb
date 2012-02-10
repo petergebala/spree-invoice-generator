@@ -1,19 +1,29 @@
 module Spree
   class InvoicePrintsController < Spree::BaseController
-    def get_pdf
-      order_id = params[:order_id].to_i
+    def get_user_pdf
+      generate(params[:order_id])
+    end
 
-      unless order_id.zero?
-        @invoice_print = InvoicePrint.find_by_order_id(order_id) 
+    def get_pdf
+      return unauthorized unless current_user.has_role?(:admin)
+      generate(params[:order_id])
+    end
+
+    private
+    def generate(order)
+      order_id = params[:order_id].to_i
+      @invoice_print = current_user.has_role?(:admin) ? InvoicePrint.find_by_order_id(order_id) : current_user.orders.find_by_order_id(order_id)
+
+      if @invoice_print
         respond_to do |format|
-          format.html { render :text => "#{@invoice_print.id} is ok" }
-          format.pdf { send_data @invoice_print.generate_pdf, :filename => "invoice_#{@invoice_print.order_id}.pdf", :type => 'application/pdf' }
+          format.pdf { send_data @invoice_print.generate_pdf, :filename => "invoice_#{@invoice_print.order_id}.pdf", 
+                                                              :type => 'application/pdf' }
         end
       else
-        if user.has_role?(:admin)
-          return redirect_to(admin_orders_path, :alert => "There is no such a order.")
+        if current_user.has_role?(:admin)
+          return redirect_to(admin_orders_path, :notice => "There is no such an order.")
         else
-          return redirect_to(orders_path, :alert => "There is no such a order.")
+          return redirect_to(orders_path, :alert => "There is no such an order.")
         end
       end
     end
