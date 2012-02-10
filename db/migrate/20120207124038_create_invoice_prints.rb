@@ -3,7 +3,7 @@ class CreateInvoicePrints < ActiveRecord::Migration
     create_table :spree_invoice_prints do |t|
       t.integer :order_id
       t.integer :user_id
-      t.integer :counter
+      t.integer :counter, :default => 0
 
       t.timestamps
     end

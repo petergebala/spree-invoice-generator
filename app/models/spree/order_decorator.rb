@@ -1,5 +1,5 @@
 Spree::Order.class_eval do
-  has_one :invoice_print
+  has_one :invoice_print, :dependent => :destroy
   after_create :add_invoice_print
 
   private
