@@ -10,4 +10,9 @@ else
   # gem "ruby-debug19"
 end
 
+group :asset do
+  gem 'sprockets'
+  gem 'sass-rails'
+end
+
 gemspec
