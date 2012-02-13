@@ -5,7 +5,8 @@ module Spree
     belongs_to :order
 
     @@config = {
-      :template_path => File.expand_path(File.dirname(__FILE__)+"/../..") + "/views/invoice_prints/invoice_template.html.erb"
+      :template_path => File.expand_path(File.dirname(__FILE__)+"/../..") + "/views/invoice_prints/invoice_template.html.erb",
+      :except_payment => ['Spree::PaymentMethod::Check']
     }
     cattr_accessor :config
 

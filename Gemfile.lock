@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    spree_invoice_generator (0.0.1a)
+    spree_invoice_generator (0.0.3a)
       spree_core (= 1.0.0.rc3)
       wicked_pdf
 

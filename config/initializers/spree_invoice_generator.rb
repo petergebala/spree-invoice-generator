@@ -7,5 +7,6 @@ WickedPdf.config = {
 Mime::Type.register 'application/pdf', :pdf 
 
 Spree::InvoicePrint.config = {
-  :template_path => File.expand_path(File.dirname(__FILE__)+"/../..") + "/views/invoice_prints/invoice_template.html.erb"
+  :template_path => File.expand_path(File.dirname(__FILE__)+"/../..") + "/app/views/invoice_prints/invoice_template.html.erb",
+  :except_payment => ['Spree::PaymentMethod::Check']
 }
