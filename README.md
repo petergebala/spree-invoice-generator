@@ -22,7 +22,8 @@ or:
 	Order.last.invoice_print.generate_pdf
 
 or: 
+
 	pdfs = []
 	User.last.invoice_prints.each { |e| pdfs << e.generate_pdf }
 
-#You can also check how many times invoice was generated - column: counter
+You can also check how many times invoice was generated - column: counter
