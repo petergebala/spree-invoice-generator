@@ -16,6 +16,11 @@ module SpreeInvoiceGenerator
          end
       end
 
+      def generate_missing_records
+        puts ">> Generating missing records..."
+        run 'bundle exec spree_invoice_prints:generate'
+      end
+
       def copy_templates
         puts ">> Copy invoice template"
         copy_file (File.expand_path('../../../../../app/views/invoice_prints/', __FILE__) + "/invoice_template.html.erb"), "app/views/invoice_prints/invoice_template.html.erb"
