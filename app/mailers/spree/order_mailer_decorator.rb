@@ -1,7 +1,7 @@
 Spree::OrderMailer.class_eval do
 
   def confirm_email(order, resend=false)
-    if !Spree::InvoicePrint.config[:except_payment].include?(order.payment_method.type)
+    if Spree::InvoicePrint.config[:on_confirm_email] && !Spree::InvoicePrint.config[:except_payment].include?(order.payment_method.type)
       inv_print = Spree::InvoicePrint.find_by_order_id(order.id)
       attachments["invoice.pdf"] = {:content => inv_print.generate_pdf,
                                   :mime_type => 'application/pdf' } if inv_print
