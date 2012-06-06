@@ -5,7 +5,7 @@ module Spree
     belongs_to :order
 
     @@config = {
-      :template_path => File.expand_path(File.dirname(__FILE__)+"/../..") + "/views/spree/invoice_prints/invoice_template.html.erb",
+      :template_path => Rails.root.join("app/views/spree/invoice_prints/invoice_template.html.erb"),
       :except_payment => ['Spree::PaymentMethod::Check']
     }
 
