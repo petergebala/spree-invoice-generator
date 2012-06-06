@@ -1,7 +1,7 @@
 module SpreeInvoiceGenerator
   module Generators
     class InstallGenerator < Rails::Generators::Base
-      source_root File.expand_path('../../../../../', __FILE__) 
+      source_root File.expand_path('../../../../../', __FILE__)
 
       def add_migrations
         run 'bundle exec rake railties:install:migrations FROM=spree_invoice_generator'
@@ -18,7 +18,7 @@ module SpreeInvoiceGenerator
 
       def generate_missing_records
         puts ">> Generating missing records..."
-        run 'bundle exec spree_invoice_prints:generate'
+        run 'bundle exec rake spree_invoice_prints:generate'
       end
 
       def copy_templates
