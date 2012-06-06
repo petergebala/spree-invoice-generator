@@ -1,3 +1,5 @@
+require File.join(File.dirname(__FILE__), 'wkhtmltopdf')
+
 module SpreeInvoiceGenerator
   class Engine < Rails::Engine
     engine_name 'spree_invoice_generator'
