@@ -15,9 +15,14 @@ module Spree
     cattr_accessor :config
 
     def generate_pdf
-      html_template = File.open(@@config[:template_path]).read
       self.update_attribute(:counter, self.counter + 1)
-      WickedPdf.new.pdf_from_string(Erubis::Eruby.new(html_template).result(:@order => self.order).html_safe)
+      WickedPdf.new.pdf_from_string(
+        StaticRender.render_erb(@@config[:template_path], {
+          :@order => self.order,
+          :@address => self.order.bill_address,
+          :@invoice_print => self
+        })
+      )
     end
 
   private
@@ -27,4 +32,15 @@ module Spree
     end
 
   end
+
+  class StaticRender < ActionController::Base
+    def self.render_erb(template_path, locals = {})
+      view = ActionView::Base.new(ActionController::Base.view_paths, {})
+      class << view
+        include ApplicationHelper
+      end
+      view.render(:file => template_path, :locals => locals, :layout => nil)
+    end
+  end
+
 end
