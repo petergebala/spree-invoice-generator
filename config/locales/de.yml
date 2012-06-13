@@ -3,3 +3,4 @@ de:
     invoice: Rechnung
     print: drucken
     print_invoice: Rechnung drucken
+    no_such_order_found: "Diese Bestellung konnte nicht gefunden werden."

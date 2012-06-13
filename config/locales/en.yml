@@ -3,3 +3,4 @@ en:
     invoice: Invoice
     print: Print
     print_invoice: Print Invoice
+    no_such_order_found: "No such order found."
