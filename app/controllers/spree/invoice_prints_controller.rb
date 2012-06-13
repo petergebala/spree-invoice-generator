@@ -11,7 +11,7 @@ module Spree
       @invoice_print = current_user.has_role?(:admin) ? InvoicePrint.find_or_create_by_order_id({:order_id => order_id, :user_id => @order ? @order.user_id : nil}) : current_user.invoice_prints.find_or_create_by_order_id(order_id)
       if @invoice_print
         respond_to do |format|
-          format.pdf { send_data @invoice_print.generate_pdf, :filename => "invoice_#{@invoice_print.order_id}.pdf", :type => 'application/pdf' }
+          format.pdf { send_data @invoice_print.generate_pdf, :filename => "#{@invoice_print.invoice_number}.pdf", :type => 'application/pdf' }
         end
       else
         if current_user.has_role?(:admin)
