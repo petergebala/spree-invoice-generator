@@ -1,5 +1,6 @@
 module Spree
   class InvoicePrint < ActiveRecord::Base
+
     belongs_to :user
     belongs_to :order
 
@@ -23,20 +24,24 @@ module Spree
     def generate_pdf
       self.update_attribute(:counter, self.counter + 1)
       WickedPdf.new.pdf_from_string(
-        StaticRender.render_erb(@@config[:template_path], {
+        StaticRender.render_erb(config[:template_path], {
           :@order => self.order,
           :@address => self.order.bill_address,
           :@invoice_print => self
         }), {
-          :margin => @@config[:page_margins]
+          :margin => config[:page_margins]
         }
       )
     end
 
   private
 
+    def config
+      self.class.config
+    end
+
     def generate_invoice_number
-      write_attribute(:invoice_number, @@config[:invoice_number_generation_method].call(InvoicePrint.from_current_year.length + 1))
+      write_attribute(:invoice_number, config[:invoice_number_generation_method].call(InvoicePrint.from_current_year.length + 1))
     end
 
   end
