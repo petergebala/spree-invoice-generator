@@ -8,6 +8,8 @@ module Spree
 
     scope :from_current_year, where(["created_at > ? AND created_at < ?", Time.now.at_beginning_of_year, Time.now.at_end_of_year])
 
+    cattr_accessor :config
+
     @@config = {
       :template_path => Rails.root.join("app/views/spree/invoice_prints/invoice_template.html.erb"),
       :except_payment => ['Spree::PaymentMethod::Check'],
@@ -22,8 +24,6 @@ module Spree
         :right  => 15
       }
     }
-
-    cattr_accessor :config
 
     def generate_pdf
       self.update_attribute(:counter, self.counter + 1)
