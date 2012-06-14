@@ -38,6 +38,7 @@ module Spree
       view = ActionView::Base.new(ActionController::Base.view_paths, {})
       class << view
         include ApplicationHelper
+        include WickedPdfHelper::Assets
       end
       view.render(:file => template_path, :locals => locals, :layout => nil)
     end
