@@ -9,6 +9,12 @@ module Spree
       :invoice_number_generation_method => lambda { |next_invoice_count|
         number = "%04d" % next_invoice_count.to_s
         "R-#{Time.now.year}-#{number}"
+      },
+      :page_margins => {
+        :top    => 0,
+        :bottom => 0,
+        :left   => 20,
+        :right  => 15
       }
     }
 
@@ -21,7 +27,9 @@ module Spree
           :@order => self.order,
           :@address => self.order.bill_address,
           :@invoice_print => self
-        })
+        }), {
+          :margin => @@config[:page_margins]
+        }
       )
     end
 
