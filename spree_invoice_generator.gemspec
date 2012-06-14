@@ -2,7 +2,7 @@
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.name        = 'spree_invoice_generator'
-  s.version     = '0.0.6'
+  s.version     = '0.0.7'
   s.summary     = 'Spree invoice PDF generation extension.'
   s.description = 'This gem provides invoice pdf generation from a html template via wkhtmltopdf.'
   s.required_ruby_version = '>= 1.8.7'
