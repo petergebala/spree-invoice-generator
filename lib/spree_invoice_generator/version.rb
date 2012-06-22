@@ -1,0 +1,3 @@
+module SpreeInvoiceGenerator
+  VERSION = ''
+end

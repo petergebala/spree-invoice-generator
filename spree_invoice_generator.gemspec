@@ -1,20 +1,23 @@
-# encoding: UTF-8
+# -*- encoding: utf-8 -*-
+$:.push File.expand_path("../lib", __FILE__)
+require "spree_invoice_generator/version"
+
 Gem::Specification.new do |s|
-  s.platform    = Gem::Platform::RUBY
-  s.name        = 'spree_invoice_generator'
-  s.version     = '0.0.8'
-  s.summary     = 'Spree invoice PDF generation extension.'
-  s.description = 'This gem provides invoice pdf generation from a html template via wkhtmltopdf.'
+  s.platform              = Gem::Platform::RUBY
+  s.name                  = 'spree_invoice_generator'
+  s.version               = SpreeInvoiceGenerator::VERSION
+  s.summary               = 'Spree invoice PDF generation extension.'
+  s.description           = 'This gem provides invoice pdf generation from a html template via wkhtmltopdf.'
   s.required_ruby_version = '>= 1.8.7'
 
-  s.authors           = ['Peter Gębala', 'Thomas von Deyen']
-  s.email             = ['piotrek.gebala@gmail.com']
-  s.homepage          = 'https://github.com/magiclabs/spree-invoice-generator'
+  s.authors               = ['Peter Gębala', 'Thomas von Deyen']
+  s.email                 = ['piotrek.gebala@gmail.com']
+  s.homepage              = 'https://github.com/magiclabs/spree-invoice-generator'
 
-  s.files         = `git ls-files`.split("\n")
-  s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
-  s.require_path  = 'lib'
-  s.requirements  << 'wkhtmltopdf'
+  s.files                 = `git ls-files`.split("\n")
+  s.test_files            = `git ls-files -- {test,spec,features}/*`.split("\n")
+  s.require_path          = 'lib'
+  s.requirements          << 'wkhtmltopdf'
 
   s.add_dependency 'spree_core', '~> 1.0.4'
   s.add_dependency 'wicked_pdf'
