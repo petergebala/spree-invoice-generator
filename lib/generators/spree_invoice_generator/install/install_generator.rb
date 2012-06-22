@@ -1,7 +1,7 @@
 module SpreeInvoiceGenerator
   module Generators
     class InstallGenerator < Rails::Generators::Base
-      source_root File.expand_path('../../../../../', __FILE__)
+      source_root File.join(File.dirname(__FILE__), 'templates/')
 
       def add_migrations
         run 'bundle exec rake railties:install:migrations FROM=spree_invoice_generator'
@@ -23,12 +23,12 @@ module SpreeInvoiceGenerator
 
       def copy_templates
         puts ">> Copy invoice template"
-        copy_file (File.expand_path('../../../../../app/views/invoice_prints/', __FILE__) + "/invoice_template.html.erb"), "app/views/invoice_prints/invoice_template.html.erb"
+        copy_file (File.expand_path('../../../../../app/views/spree/invoice_prints/', __FILE__) + "/invoice_template.html.erb"), "app/views/spree/invoice_prints/invoice_template.html.erb"
       end
 
       def copy_config
         puts ">> Copy config file"
-        copy_file (File.expand_path('../../../../../config/initializers/', __FILE__) + "/spree_invoice_generator.rb"), "config/initializers/spree_invoice_generator.rb"
+        copy_file "initializer.rb.tt", "config/initializers/spree_invoice_generator.rb"
         puts "\n>>> Don't forget to check your config file! <<<"
       end
     end
