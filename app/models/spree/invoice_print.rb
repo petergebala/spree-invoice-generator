@@ -56,6 +56,7 @@ module Spree
       class << view
         include ApplicationHelper
         include WickedPdfHelper::Assets
+        include Spree::BaseHelper
       end
       view.render(:file => template_path, :locals => locals, :layout => nil)
     end
