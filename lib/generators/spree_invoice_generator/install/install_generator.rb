@@ -3,6 +3,8 @@ module SpreeInvoiceGenerator
     class InstallGenerator < Rails::Generators::Base
       source_root File.join(File.dirname(__FILE__), 'templates/')
 
+      # TODO 
+      # - checkout this
       def add_migrations
         run 'bundle exec rake railties:install:migrations FROM=spree_invoice_generator'
       end

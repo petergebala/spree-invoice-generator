@@ -1,6 +1,8 @@
 module Spree
   class InvoicePrintsController < Spree::BaseController
 
+    # TODO
+    # - ugly action - to big, to complicated. It shouldn't be soo big...
     def show
       order_id = params[:order_id].to_i
       @order = Order.find_by_id(order_id)

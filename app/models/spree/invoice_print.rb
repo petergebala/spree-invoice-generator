@@ -1,7 +1,18 @@
 module Spree
   class InvoicePrint < ActiveRecord::Base
+    attr_accessible :user
+
+    belongs_to :user
+    belongs_to :order
+
+    before_create :generate_invoice_number
+
+    scope :from_current_year, where(["created_at > ? AND created_at < ?", Time.now.at_beginning_of_year, Time.now.at_end_of_year])
 
     cattr_accessor :config
+
+    # TODO
+    # - remove configuration from model... -_-
     self.config = {
       :template_path => Rails.root.join("app/views/spree/invoice_prints/invoice_template.html.erb"),
       :except_payment => ['Spree::PaymentMethod::Check'],
@@ -17,15 +28,11 @@ module Spree
       }
     }
 
-    belongs_to :user
-    belongs_to :order
-
-    before_create :generate_invoice_number
-
-    scope :from_current_year, where(["created_at > ? AND created_at < ?", Time.now.at_beginning_of_year, Time.now.at_end_of_year])
 
     def generate_pdf
       self.update_attribute(:counter, self.counter + 1)
+      # TODO
+      # - Move it to controller. Do not genenrate html in model. This is wrong place to do that
       WickedPdf.new.pdf_from_string(
         StaticRender.render_erb(self.class.config[:template_path], {
           :@order => self.order,
@@ -39,12 +46,16 @@ module Spree
 
   private
 
-    def generate_invoice_number
-      write_attribute(:invoice_number, config[:invoice_number_generation_method].call(InvoicePrint.from_current_year.length + 1))
-    end
+  # TODO
+  # Nice idiea but invoice numeration should be added to invoice not invoice print...
+  def generate_invoice_number
+    write_attribute(:invoice_number, config[:invoice_number_generation_method].call(InvoicePrint.from_current_year.length + 1))
+  end
 
   end
 
+  # TODO
+  # Crap....
   class StaticRender < ActionController::Base
     def self.render_erb(template_path, locals = {})
       view = ActionView::Base.new(ActionController::Base.view_paths, {})

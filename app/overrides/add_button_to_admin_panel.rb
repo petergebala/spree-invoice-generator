@@ -6,6 +6,9 @@ Deface::Override.new(
   :text => "<th><%= t(:invoice, :scope => :spree) %></th>"
 )
 
+# TODO: 
+# - Throw out inline JS
+# - Move large html code to files
 Deface::Override.new(
   :virtual_path => %q{spree/admin/orders/index},
   :insert_after => "[data-hook='admin_orders_index_row_actions']",
@@ -19,6 +22,8 @@ Deface::Override.new(
 )
 
 # In Order#show
+# TODO: 
+# - missing show button
 Deface::Override.new(
   :virtual_path => %q{spree/admin/orders/show},
   :insert_bottom => "[data-hook='admin_order_show_buttons']",
