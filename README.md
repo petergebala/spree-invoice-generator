@@ -1,5 +1,11 @@
 #SpreeInvoiceGenerator
 =====================
+ATTENTION!!!!
+DO NOT USE IT. I'M REWRITING IT ON DEVELOPMENT BRANCH. BE PATIENT!
+
+
+
+DEPRICATED!
 This gem provides model responsible for generating pdf from html file.
 
 ##Installation
