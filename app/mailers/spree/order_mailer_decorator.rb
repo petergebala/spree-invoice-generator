@@ -16,6 +16,5 @@ module Spree
       subject += "#{Config[:site_name]} #{t('order_mailer.confirm_email.subject')} ##{order.number}"
       mail(:to => order.email, :subject => subject)
     end
-
   end
 end

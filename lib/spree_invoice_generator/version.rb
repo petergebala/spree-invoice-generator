@@ -1,3 +1,3 @@
 module SpreeInvoiceGenerator
-  VERSION = "0.0.20a"
+  VERSION = "0.0.20"
 end

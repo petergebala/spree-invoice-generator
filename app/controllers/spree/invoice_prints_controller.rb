@@ -14,8 +14,11 @@ module Spree
       end
 
       respond_to do |format|
-        format.pdf  { send_data @invoice_print.generate_pdf, :filename => "#{@invoice_print.invoice_number}.pdf", :type => 'application/pdf' }
-        format.html { render :file => SpreeInvoiceGenerator.invoice_template_path, :layout => false }
+        format.pdf do 
+          render_options = { pdf: "#{@invoice_print.invoice_number}.pdf", layout: false }.merge(SpreeInvoiceGenerator.wkhtmltopdf_options)
+          render render_options
+        end
+        format.html { render file: SpreeInvoiceGenerator.wkhtmltopdf_options[:template], layout: false }
       end
     end
 
@@ -26,7 +29,7 @@ module Spree
 
       # Makes sure that this order exists in DB
       rescue ActiveRecord::RecordNotFound
-        alert_message = t(:no_such_order_found, :scope => :spree)
+        alert_message = t(:no_such_order_found, scope: :spree)
 
         if current_user.has_spree_role?(:admin)
           return redirect_to(admin_orders_path, alert: alert_message)
