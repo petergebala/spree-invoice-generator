@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.version               = SpreeInvoiceGenerator::VERSION
   s.summary               = 'Spree invoice PDF generation extension.'
   s.description           = 'This gem provides invoice pdf generation from a html template via wkhtmltopdf.'
-  s.required_ruby_version = '>= 1.8.7'
+  s.required_ruby_version = '>= 1.9.3'
 
   s.authors               = ['Peter Gębala', 'Thomas von Deyen']
   s.email                 = ['piotrek.gebala@gmail.com']
@@ -19,12 +19,6 @@ Gem::Specification.new do |s|
   s.require_path          = 'lib'
   s.requirements          << 'wkhtmltopdf'
 
-  s.add_dependency 'spree_core', '~> 1.2.0'
+  s.add_dependency 'spree_core', '~> 1.2.2'
   s.add_dependency 'wicked_pdf'
-
-  s.add_development_dependency 'capybara', '1.0.1'
-  s.add_development_dependency 'factory_girl'
-  s.add_development_dependency 'ffaker'
-  s.add_development_dependency 'rspec-rails',  '~> 2.7'
-  s.add_development_dependency 'sqlite3'
 end
