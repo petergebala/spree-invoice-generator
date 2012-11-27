@@ -1,10 +1,6 @@
-require File.join(File.dirname(__FILE__), 'wkhtmltopdf')
-
 module SpreeInvoiceGenerator
-  class Engine < Rails::Engine
+  class Engine < ::Rails::Engine
     engine_name 'spree_invoice_generator'
-
-    config.autoload_paths += %W(#{config.root}/lib)
 
     # use rspec for tests
     config.generators do |g|

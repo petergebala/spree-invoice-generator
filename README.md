@@ -13,7 +13,8 @@ This gem provides model responsible for generating pdf from html file.
 
 ###Add to Gemfile:
 -------
-	 gem 'spree_invoice_generator'
+	 gem 'spree_invoice_generator', :git => 'git://github.com/petergebala/spree-invoice-generator.git'
+   bundle
 
 ###Execute: 
 -------
