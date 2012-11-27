@@ -22,7 +22,9 @@ In file config/initializers/spree_invoice_generator.rb please check your configu
 
 For more see: [wicked_pdf](https://github.com/mileszs/wicked_pdf)
 
-### In any model you can generate pdf string:
+## Usage
+
+In any model you can generate pdf string:
 
 ```ruby
 Spree::InvoicePrint.find_by_order_id('some id').try(:generate_pdf)
@@ -43,7 +45,7 @@ Spree::User.last.invoice_prints.each { |e| pdfs << e.generate_pdf }
 
 You can also check how many times invoice was generated - column: counter
 
-### Customize template.
+## Customize template.
 
 Before use it please customize your invoice template.
 
