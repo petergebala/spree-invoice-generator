@@ -16,7 +16,7 @@ then run:
 
     rails g spree_invoice_generator:install
 
-### Configuration: 
+## Configuration: 
 
 In file config/initializers/spree_invoice_generator.rb please check your configuration for wkhtmltopdf bin path. 
 
