@@ -30,7 +30,7 @@ module SpreeInvoiceGenerator
 
       def copy_config
         puts ">> Copy config file"
-        copy_file "initializer.rb.tt", "config/initializers/spree_invoice_generator.rb"
+        copy_file "initializer.rb", "config/initializers/spree_invoice_generator.rb"
         puts "\n>>> Don't forget to check your config file! <<<"
       end
     end
